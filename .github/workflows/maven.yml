@@ -36,7 +36,7 @@ jobs:
         run: mvn -B package --file pom.xml
 
       - name: Copy to staging
-        run: mkdir staging && cp C:/Users/lenovo/Dropbox/Wirtschaftsinformatik/2. Semester/SLT/TicTacToe/target/*.jar staging
+        run: mkdir staging && cp C:/Users/lenovo/Dropbox/WI/SS24/SLT/TicTacToe/target/*.jar staging
 
       - name: upload
         uses: actions/upload-artifact@v4

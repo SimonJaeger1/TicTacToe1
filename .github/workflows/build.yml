@@ -1,0 +1,45 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+
+# Name des Workflows
+name: Java CI with Maven
+
+# Definition der Trigger die zum Auslösen führen
+on:
+  push:
+    branches: [ "dev" ]
+  pull_request:
+    branches: [ "main" ]
+  # Möglichkeit den Worklow auch manuell anzustoßen
+  workflow_dispatch:
+
+#Definition der Schritte des Workflows
+jobs:
+  build: #Name des Schrittes
+    runs-on: ubuntu-latest #Auf was für einer VM soll es ausgeführt werden
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'corretto'
+          cache: maven
+      - name: Build with Maven
+        run: mvn package
+
+      - name: Copy to staging
+        run: mkdir staging && cp /home/runner/work/2024_bwi2_le3_reference/2024_bwi2_le3_reference/target/*.jar staging
+
+      - name: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: BIW2_Calculator.jar
+          path: staging

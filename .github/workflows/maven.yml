@@ -30,16 +30,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '21'
-          distribution: 'corretto'
+          distribution: 'temurin'
           cache: maven
       - name: Build with Maven
-        run: mvn package
-
-      - name: Copy to staging
-        run: mkdir staging && cp /home/runner/work/2024_bwi2_le3_reference/2024_bwi2_le3_reference/target/*.jar staging
-
-      - name: upload
-        uses: actions/upload-artifact@v4
-        with:
-          name: BIW2_Calculator.jar
-          path: staging
+        run: mvn -B package --file pom.xml

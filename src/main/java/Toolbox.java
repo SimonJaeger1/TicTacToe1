@@ -97,12 +97,9 @@ public class Toolbox {
                 (playfield[2][0] == playerTurn && playfield[1][1] == playerTurn && playfield[0][2] == playerTurn)) {
             return true;
         }
-        if ((playfield[0][0] == playerTurn && playfield[1][0] == playerTurn && playfield[2][0] == playerTurn) ||
+        return (playfield[0][0] == playerTurn && playfield[1][0] == playerTurn && playfield[2][0] == playerTurn) ||
                 (playfield[0][1] == playerTurn && playfield[1][1] == playerTurn && playfield[2][1] == playerTurn) ||
-                (playfield[0][2] == playerTurn && playfield[1][2] == playerTurn && playfield[2][2] == playerTurn)){
-            return true;
-        }
-        return false;
+                (playfield[0][2] == playerTurn && playfield[1][2] == playerTurn && playfield[2][2] == playerTurn);
     }
 
     static void requestGame() {

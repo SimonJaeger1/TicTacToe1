@@ -6,40 +6,40 @@ class BoardTest {
 
     private Board board;
 
-    void newBoard() {
+    void setUp() {
         board = new Board();
     }
 
     @Test
     void testIsCellEmptyYes() {
-        newBoard();
+        setUp();
         assertTrue(board.isCellEmpty(0,0));
     }
 
     @Test
     void testIsCellEmptyNo() {
-        newBoard();
+        setUp();
         board.place(0,0,'O');
         assertFalse(board.isCellEmpty(0,0));
     }
 
     @Test
     void testPlaceTrue() {
-        newBoard();
+        setUp();
         board.place(0,0, 'O');
         assertEquals('O', board.cells[0][0]);
     }
 
     @Test
     void testPlaceFalse() {
-        newBoard();
+        setUp();
         board.place(0,0, 'O');
         assertNotEquals('X', board.cells[0][0]);
     }
 
     @Test
     void isFullTrue() {
-        newBoard();
+        setUp();
         for (int i = 0; i < board.cells.length; i++) {
             for (int j = 0; j < board.cells[i].length; j++) {
                 board.place(i, j, 'O');
@@ -50,7 +50,7 @@ class BoardTest {
 
     @Test
     void isFullFalse() {
-        newBoard();
+        setUp();
         board.place(0,0, 'X');
         board.place(1,1, 'O');
         assertFalse(board.isFull());
@@ -58,23 +58,10 @@ class BoardTest {
 
     @Test
     void clear() {
-        newBoard();
+        setUp();
         board.place(0,0, 'O');
         board.clear();
         assertTrue(board.isCellEmpty(0,0));
     }
 
-    /*@Test
-    void print() {
-        newBoard();
-        board.print();
-
-        String expectedOutput =
-                "---------\n" +
-                "[ , , ]\n" +
-                "[ , , ]\n" +
-                "[ , , ]\n" +
-                "---------\n";
-        assertEquals(expectedOutput, board.toString());
-    }*/
 }

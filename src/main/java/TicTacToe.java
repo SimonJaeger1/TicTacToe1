@@ -3,10 +3,10 @@ import java.util.Scanner;
 public class TicTacToe {
 
     Scanner sc = new Scanner(System.in);
-    private Player player1;
-    private Player player2;
-    private Player currentPlayer;
-    private Board board;
+    Player player1;
+    Player player2;
+    Player currentPlayer;
+    Board board;
 
     public TicTacToe() {
         player1 = new Player('X');
@@ -46,7 +46,7 @@ public class TicTacToe {
         newGame();
     }
 
-    private void newGame() {
+    public void newGame() {
         System.out.println("New game? [y|n]: ");
         String input = sc.next();
         if (input.equals("y")) {
@@ -59,7 +59,7 @@ public class TicTacToe {
         }
     }
 
-    private int rowInput() {
+    public int rowInput() {
         System.out.println("row (0-2): ");
         int row = sc.nextInt();
         if (row < 0 || row > 2) {
@@ -69,7 +69,7 @@ public class TicTacToe {
         return row;
     }
 
-    private int columnInput() {
+    public int columnInput() {
         System.out.println("column (0-2): ");
         int column = sc.nextInt();
         if (column < 0 || column > 2) {
@@ -79,7 +79,7 @@ public class TicTacToe {
         return column;
     }
 
-    private void switchCurrentPlayer() {
+    public void switchCurrentPlayer() {
         if (currentPlayer == player1) {
             currentPlayer = player2;
         } else {
@@ -87,7 +87,7 @@ public class TicTacToe {
         }
     }
 
-    private boolean hasWinner() {
+    public boolean hasWinner() {
         // Check rows
         for (int i = 0; i < 3; i++) {
             if (!board.isCellEmpty(i,0) && board.cells[i][0] == board.cells[i][1] && board.cells[i][1] == board.cells[i][2]) {
@@ -111,22 +111,5 @@ public class TicTacToe {
         }
 
         return false;
-    }
-
-    //Getter für Unit-Tests
-    public Player getPlayer1() {
-        return player1;
-    }
-
-    public Player getPlayer2() {
-        return player2;
-    }
-
-    public Player getCurrentPlayer() {
-        return currentPlayer;
-    }
-
-    public Board getBoard() {
-        return board;
     }
 }

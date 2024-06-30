@@ -23,12 +23,12 @@ public class TicTacToe {
             board.print();
             System.out.println("Current player: " + currentPlayer.getMarker());
 
-            int row = rowInput();
-            int col = columnInput();
+            int row = rowInput() -1 ;
+            int col = columnInput() - 1;
             while (!board.isCellEmpty(row, col)) {
                 System.out.println("Field is already taken!");
-                row = rowInput();
-                col = columnInput();
+                row = rowInput() - 1;
+                col = columnInput() - 1;
             }
 
             board.place(row, col, currentPlayer.getMarker());
@@ -60,9 +60,9 @@ public class TicTacToe {
     }
 
     public int rowInput() {
-        System.out.println("row (0-2): ");
+        System.out.println("row (1-3): ");
         int row = sc.nextInt();
-        if (row < 0 || row > 2) {
+        if (row < 1 || row > 3) {
             System.out.println("Index is out of bounds");
             rowInput();
         }
@@ -70,9 +70,9 @@ public class TicTacToe {
     }
 
     public int columnInput() {
-        System.out.println("column (0-2): ");
+        System.out.println("column (1-3): ");
         int column = sc.nextInt();
-        if (column < 0 || column > 2) {
+        if (column < 1 || column > 3) {
             System.out.println("Index is out of bounds");
             columnInput();
         }
